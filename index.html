@@ -7,22 +7,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
-body { background:#fff0f5; overflow:hidden; font-family:'Poppins', sans-serif; }
+body { overflow:hidden; font-family:'Poppins', sans-serif; }
 
-/* VIDEO SECTION */
+/* ---------------- VIDEO START ---------------- */
 #videoSection { position:fixed; width:100%; height:100vh; background:black; display:flex; justify-content:center; align-items:center; transition:opacity 1.5s ease; z-index:10; }
 #introVideo { width:100%; height:100%; object-fit:cover; display:none; }
 #startBtn { padding:18px 45px; background:#ff69b4; color:white; border:none; border-radius:50px; font-size:18px; cursor:pointer; transition:all 0.4s cubic-bezier(.22,1,.36,1); }
 #startBtn:hover { background:#ff1493; transform:scale(1.08); }
 
-/* LETTER SECTION */
-#letterSection { position:fixed; width:100%; height:100vh; display:flex; justify-content:center; align-items:center; opacity:0; transition:opacity 2s ease; perspective:1200px; }
+/* ---------------- LETTER QUESTION PAGE ---------------- */
+#letterSection {
+  position:fixed; width:100%; height:100vh; display:flex; justify-content:center; align-items:center;
+  opacity:0; transition:opacity 2s ease; perspective:1200px;
+  background: linear-gradient(-45deg, #ffb6c1, #ff69b4, #ff1493, #ffc0cb);
+  background-size: 400% 400%;
+  animation: bgGradient 15s ease infinite;
+  overflow:hidden;
+}
+@keyframes bgGradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 #letterSection.show { opacity:1; }
-.letter { width:450px; height:280px; background:linear-gradient(145deg,#fffafc,#ffe6f0); border-radius:16px; box-shadow:0 30px 60px rgba(255,105,180,0.25); transform-origin:top; transform:rotateX(-90deg); transition:transform 2s cubic-bezier(.22,1,.36,1); padding:50px; text-align:center; position:relative; overflow:hidden;}
+
+.letter {
+  width:450px; height:280px; background:rgba(255,255,255,0.85); border-radius:16px;
+  box-shadow:0 30px 60px rgba(255,105,180,0.25); transform-origin:top; transform:rotateX(-90deg);
+  transition:transform 2s cubic-bezier(.22,1,.36,1); padding:50px; text-align:center; position:relative; overflow:hidden;
+}
 .letter.open { transform:rotateX(0); }
-.valentine-text { font-family:'Playfair Display', serif; font-size:26px; color:#ff4d88; opacity:0; display:inline-block; line-height:1.5; }
+
+.valentine-text {
+  font-family:'Playfair Display', serif; font-size:26px; color:#ff4d88; opacity:0; display:inline-block; line-height:1.5;
+}
 .valentine-text span { display:inline-block; opacity:0; transform:translateY(20px); animation:letterFade 0.6s forwards; }
-@keyframes letterFade { to { opacity:1; transform:translateY(0); } }
+@keyframes letterFade { to{opacity:1; transform:translateY(0);} }
 
 /* BUTTONS */
 .buttons { margin-top:30px; opacity:0; transition:opacity 1.5s ease 1.5s; }
@@ -38,24 +58,26 @@ canvas { position:fixed; top:0; left:0; pointer-events:none; }
 /* FINAL OVERLAY */
 #finalOverlay { position:fixed; top:0; left:0; width:100%; height:100%; display:flex; justify-content:center; align-items:center; overflow:hidden; z-index:9999; }
 #finalOverlay video { position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0; }
-#finalText { position:relative; z-index:1; font-family:'Playfair Display', serif; font-size:6vw; text-align:center; background:linear-gradient(90deg, #ff69b4, #ff1493, #ffc0cb, #ff85a2); background-clip: text; -webkit-background-clip: text; color:transparent; animation:gradientShift 5s linear infinite, pulse 1.5s ease-in-out infinite, wiggle 1s ease-in-out infinite; }
-
-/* TEXT ANIMATIONS */
-@keyframes gradientShift { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
-@keyframes pulse { 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.1); } }
-@keyframes wiggle { 0%,100%{ transform:rotate(0deg); } 25%{ transform:rotate(2deg); } 50%{ transform:rotate(-2deg); } 75%{ transform:rotate(2deg); } }
+#finalText {
+  position:relative; z-index:1; font-family:'Playfair Display', serif; font-size:6vw; text-align:center;
+  background:linear-gradient(90deg, #ff69b4, #ff1493, #ffc0cb, #ff85a2);
+  background-clip: text; -webkit-background-clip: text; color:transparent;
+  animation:gradientShift 5s linear infinite, pulse 1.5s ease-in-out infinite, wiggle 1s ease-in-out infinite;
+}
+@keyframes gradientShift { 0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;} }
+@keyframes pulse { 0%,100%{ transform:scale(1);}50%{ transform:scale(1.1);} }
+@keyframes wiggle { 0%,100%{ transform:rotate(0deg);}25%{ transform:rotate(2deg);}50%{ transform:rotate(-2deg);}75%{ transform:rotate(2deg);} }
 
 /* ROMANTIC FLOATING PARTICLES */
 .floatSymbol { position:fixed; font-size:20px; pointer-events:none; opacity:0; transition:all 2s ease; }
-
 </style>
 </head>
 <body>
 
-<!-- CONFETTI / FIREWORK CANVAS -->
+<!-- FIREWORK CANVAS -->
 <canvas id="confetti"></canvas>
 
-<!-- VIDEO START SECTION -->
+<!-- VIDEO START -->
 <div id="videoSection">
   <button id="startBtn">Tap to Begin</button>
   <video id="introVideo" playsinline>
@@ -63,12 +85,10 @@ canvas { position:fixed; top:0; left:0; pointer-events:none; }
   </video>
 </div>
 
-<!-- LETTER SECTION -->
+<!-- LETTER QUESTION -->
 <div id="letterSection">
   <div class="letter" id="letter">
-    <div class="valentine-text" id="valentineText">
-      <!-- Letters individually wrapped -->
-    </div>
+    <div class="valentine-text" id="valentineText"></div>
     <div class="buttons" id="buttons">
       <button class="yesBtn" onclick="sayYes()">Yes</button>
       <button class="noBtn" id="noBtn">No</button>
@@ -76,7 +96,7 @@ canvas { position:fixed; top:0; left:0; pointer-events:none; }
   </div>
 </div>
 
-<!-- AUDIO ELEMENTS -->
+<!-- AUDIO -->
 <audio id="bgMusic" src="music.mp3" loop></audio>
 <audio id="hoverSound" src="hover.mp3"></audio>
 <audio id="escapeSound" src="escape.mp3"></audio>
@@ -102,7 +122,7 @@ const yesSound = document.getElementById("yesSound");
 const fireworkSound = document.getElementById("fireworkSound");
 const finalSound = document.getElementById("finalSound");
 
-/* ---------------- TAP TO START ---------------- */
+/* ---------------- START VIDEO ---------------- */
 startBtn.onclick = () => {
   startBtn.style.display="none";
   video.style.display="block";
@@ -125,7 +145,7 @@ video.onended = () => {
   },1500);
 };
 
-/* ---------------- LETTER TEXT ANIMATION ---------------- */
+/* ---------------- LETTER ANIMATION ---------------- */
 function animateLetterText(str){
   text.innerHTML="";
   for(let i=0;i<str.length;i++){
@@ -152,45 +172,33 @@ noBtn.addEventListener("mouseenter", ()=>{
   noBtn.style.top=newY+"px";
 });
 
-/* ---------------- FIREWORK / PARTICLE SYSTEM ---------------- */
+/* ---------------- FIREWORK / PARTICLE ---------------- */
 const canvas=document.getElementById("confetti");
 const ctx=canvas.getContext("2d");
 function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
-
 let particles=[]; let animationRunning=false;
 function createFirework(x=null,y=null){
   const fx = x || Math.random()*canvas.width;
   const fy = y || Math.random()*canvas.height/2;
   fireworkSound.currentTime=0; fireworkSound.play();
   for(let i=0;i<300;i++){
-    particles.push({
-      x:fx,
-      y:fy,
-      speedX:(Math.random()-0.5)*12,
-      speedY:(Math.random()-0.5)*12,
-      gravity:0.15,
-      size:3+Math.random()*4,
-      color:["#ff69b4","#ff1493","#ffc0cb","#ff85a2","#ff4d88"][Math.floor(Math.random()*5)],
-      life:120
-    });
+    particles.push({x:fx,y:fy,speedX:(Math.random()-0.5)*12,speedY:(Math.random()-0.5)*12,gravity:0.15,size:3+Math.random()*4,color:["#ff69b4","#ff1493","#ffc0cb","#ff85a2","#ff4d88"][Math.floor(Math.random()*5)],life:120});
   }
   if(!animationRunning){ animationRunning=true; animateFireworks(); }
 }
 function animateFireworks(){
-  ctx.fillStyle="rgba(255,240,245,0.2)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="rgba(255,240,245,0.2)"; ctx.fillRect(0,0,canvas.width,canvas.height);
   particles.forEach((p,index)=>{
     p.x+=p.speedX; p.y+=p.speedY; p.speedY+=p.gravity; p.life--;
-    ctx.fillStyle=p.color;
-    ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle=p.color; ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
     if(p.life<=0){ particles.splice(index,1); }
   });
   if(particles.length>0){ requestAnimationFrame(animateFireworks); } else { animationRunning=false; }
 }
 
-/* ---------------- ROMANTIC FLOATING SYMBOLS ---------------- */
+/* ---------------- ROMANTIC SYMBOLS ---------------- */
 function romanticBackground(){
   const themes=["🌹","💋","❤️","🌸","💖"];
   for(let i=0;i<60;i++){
@@ -205,31 +213,22 @@ function romanticBackground(){
   }
 }
 
-/* ---------------- YES BUTTON SEQUENCE ---------------- */
+/* ---------------- YES BUTTON ---------------- */
 function sayYes(){
   yesSound.currentTime=0; yesSound.play();
   letter.style.transition="all 1s cubic-bezier(.22,1,.36,1)";
   letter.style.transform="scale(1.3)";
   letter.style.opacity="0";
 
-  // Fireworks and symbols
   for(let i=0;i<5;i++){ setTimeout(()=>createFirework(Math.random()*canvas.width, Math.random()*canvas.height/2), i*400); }
   romanticBackground();
   setTimeout(()=>{ finalSound.currentTime=0; finalSound.play(); },1000);
 
-  // FINAL OVERLAY
   setTimeout(()=>{
-    const finalOverlay=document.createElement("div");
-    finalOverlay.id="finalOverlay";
-    const videoEl=document.createElement("video");
-    videoEl.id="finalBg"; videoEl.autoplay=true; videoEl.loop=true; videoEl.muted=true; videoEl.playsInline=true;
-    videoEl.src="romantic-bg.mp4"; 
+    const finalOverlay=document.createElement("div"); finalOverlay.id="finalOverlay";
+    const videoEl=document.createElement("video"); videoEl.id="finalBg"; videoEl.autoplay=true; videoEl.loop=true; videoEl.muted=true; videoEl.playsInline=true; videoEl.src="romantic-bg.mp4";
     finalOverlay.appendChild(videoEl);
-
-    const h1=document.createElement("h1");
-    h1.id="finalText"; h1.innerText="YEAYYYYY";
-    finalOverlay.appendChild(h1);
-
+    const h1=document.createElement("h1"); h1.id="finalText"; h1.innerText="YEAYYYYY"; finalOverlay.appendChild(h1);
     document.body.appendChild(finalOverlay);
   },2500);
 }
