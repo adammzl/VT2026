@@ -3,190 +3,186 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Valentine ❤️</title>
+<title>For My Valentine</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+* { margin:0; padding:0; box-sizing:border-box; }
 
 body {
-  background: #fff0f5;
-  overflow: hidden;
+  background:#fff0f5;
+  overflow:hidden;
+  font-family:'Poppins', sans-serif;
 }
 
 /* VIDEO SECTION */
-
 #videoSection {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: opacity 1.5s ease;
-  z-index: 10;
+  position:fixed;
+  width:100%;
+  height:100vh;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:10;
+  transition:opacity 1.5s ease;
 }
 
 #introVideo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:none;
 }
 
-.fade-out {
-  animation: fadeOut 1.5s forwards;
+#startBtn {
+  position:absolute;
+  padding:16px 40px;
+  font-size:18px;
+  background:#ff69b4;
+  color:white;
+  border:none;
+  border-radius:40px;
+  cursor:pointer;
+  transition:0.3s;
 }
 
-@keyframes fadeOut {
-  from { opacity: 1; }
-  to { opacity: 0; }
+#startBtn:hover {
+  background:#ff1493;
+  transform:scale(1.05);
 }
 
 /* LETTER SECTION */
-
 #letterSection {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff0f5;
-  opacity: 0;
-  transition: opacity 2s ease;
-  perspective: 1200px;
+  position:fixed;
+  width:100%;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#fff0f5;
+  opacity:0;
+  transition:opacity 2s ease;
+  perspective:1200px;
 }
 
-#letterSection.show {
-  opacity: 1;
-}
-
-/* LETTER */
+#letterSection.show { opacity:1; }
 
 .letter {
-  background: linear-gradient(145deg, #fffafc, #ffe6f0);
-border: 1px solid #ffb6c1;
-  width: 350px;
-  height: 220px;
-  background: #fffafc;
-  border-radius: 10px;
-  box-shadow: 0 15px 40px rgba(255,105,180,0.3);
-  transform-style: preserve-3d;
-  transform-origin: top;
-  transform: rotateX(-90deg);
-  transition: transform 2s ease;
-  padding: 30px;
-  text-align: center;
+  width:380px;
+  height:250px;
+  background:linear-gradient(145deg,#fffafc,#ffe6f0);
+  border-radius:12px;
+  box-shadow:0 20px 50px rgba(255,105,180,0.25);
+  transform-origin:top;
+  transform:rotateX(-90deg);
+  transition:transform 2s ease;
+  padding:40px;
+  text-align:center;
 }
 
-.letter.open {
-  transform: rotateX(0deg);
-}
-
-/* TEXT */
+.letter.open { transform:rotateX(0); }
 
 .valentine-text {
-  font-family: 'Great Vibes', cursive;
-  font-size: 32px;
-  color: #5a3e4d;
-  opacity: 0;
-  transition: opacity 2s ease 1.5s;
+  font-family:'Playfair Display', serif;
+  font-size:30px;
+  color:#5a3e4d;
+  opacity:0;
+  transition:opacity 2s ease 1.2s;
 }
 
-.valentine-text.show {
-  opacity: 1;
-}
-
-/* BUTTONS */
+.valentine-text.show { opacity:1; }
 
 .buttons {
-  margin-top: 20px;
-  opacity: 0;
-  transition: opacity 2s ease 2s;
+  margin-top:25px;
+  opacity:0;
+  transition:opacity 2s ease 1.5s;
 }
 
-.buttons.show {
-  opacity: 1;
-}
+.buttons.show { opacity:1; }
 
 button {
-  padding: 10px 20px;
-  margin: 10px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
+  padding:12px 26px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.3s ease;
 }
 
 .yesBtn {
-  background: #ff69b4;
-  color: white;
+  background:#ff69b4;
+  color:white;
 }
 
 .yesBtn:hover {
-  background: #ff1493;
+  background:#ff1493;
 }
 
 .noBtn {
-  background: #ffb6c1;
-  color: white;
-  position: relative;
+  background:#ffb6c1;
+  color:white;
+  position:relative;
 }
 
-.hearts::before {
-  content: "💗 💕 💖 💞 💓";
-  position: fixed;
-  bottom: -50px;
-  font-size: 24px;
-  animation: floatUp 15s linear infinite;
-  opacity: 0.3;
-  width: 100%;
-  text-align: center;
+/* Floating particles */
+.particle {
+  position:fixed;
+  width:12px;
+  height:12px;
+  background:rgba(255,105,180,0.2);
+  border-radius:50%;
+  animation:floatUp linear infinite;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(0); }
-  to { transform: translateY(-110vh); }
+  from { transform:translateY(100vh) scale(1); }
+  to { transform:translateY(-10vh) scale(1.4); }
 }
 
+/* Confetti Canvas */
+canvas {
+  position:fixed;
+  top:0;
+  left:0;
+  pointer-events:none;
+}
 </style>
 </head>
 <body>
 
-<!-- VIDEO SECTION -->
+<canvas id="confetti"></canvas>
+
 <div id="videoSection">
-  <video id="introVideo" autoplay muted playsinline>
+  <button id="startBtn">Tap to Begin</button>
+  <video id="introVideo" playsinline>
     <source src="yourvideo.mp4" type="video/mp4">
   </video>
 </div>
 
-<!-- LETTER SECTION -->
 <div id="letterSection">
   <div class="letter" id="letter">
     <div class="valentine-text" id="valentineText">
       Will you be my Valentine?
     </div>
-
-    <div class="hearts"></div>
-
-
     <div class="buttons" id="buttons">
-      <button class="yesBtn" onclick="sayYes()">Yes ❤️</button>
-      <button class="noBtn" id="noBtn">No 😈</button>
+      <button class="yesBtn" onclick="sayYes()">Yes</button>
+      <button class="noBtn" id="noBtn">No</button>
     </div>
   </div>
 </div>
 
+<audio id="bgMusic" src="music.mp3"></audio>
+<audio id="noHover" src="no-hover.mp3"></audio>
+<audio id="noRun" src="no-run.mp3"></audio>
+<audio id="yesClick" src="yes-click.mp3"></audio>
+<audio id="successSound" src="success.mp3"></audio>
+
 <script>
 const video = document.getElementById("introVideo");
+const startBtn = document.getElementById("startBtn");
 const videoSection = document.getElementById("videoSection");
 const letterSection = document.getElementById("letterSection");
 const letter = document.getElementById("letter");
@@ -194,68 +190,108 @@ const text = document.getElementById("valentineText");
 const buttons = document.getElementById("buttons");
 const noBtn = document.getElementById("noBtn");
 
-video.onended = function() {
-  videoSection.style.opacity = "0";
+const bgMusic = document.getElementById("bgMusic");
+const noHover = document.getElementById("noHover");
+const noRun = document.getElementById("noRun");
+const yesClick = document.getElementById("yesClick");
+const successSound = document.getElementById("successSound");
 
+startBtn.addEventListener("click", () => {
+  startBtn.style.display = "none";
+  video.style.display = "block";
+  video.play();
+  bgMusic.volume = 0.4;
+  bgMusic.play();
+});
+
+video.onended = () => {
+  videoSection.style.opacity = "0";
   setTimeout(() => {
     videoSection.style.display = "none";
     letterSection.classList.add("show");
-
     setTimeout(() => {
       letter.classList.add("open");
       text.classList.add("show");
       buttons.classList.add("show");
-    }, 800);
-
-  }, 1500);
+    },800);
+  },1500);
 };
 
-// No button runs away
-noBtn.addEventListener("mouseover", () => {
-  const x = Math.random() * (window.innerWidth - 100);
-  const y = Math.random() * (window.innerHeight - 50);
-  noBtn.style.position = "fixed";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+noBtn.addEventListener("mouseenter", () => {
+  noHover.currentTime = 0;
+  noHover.play();
 });
 
-// Yes button
-function sayYes() {
-  document.body.innerHTML = `
-    <div style="
+noBtn.addEventListener("mouseover", () => {
+  noRun.currentTime = 0;
+  noRun.play();
+  const x = Math.random()*(window.innerWidth-100);
+  const y = Math.random()*(window.innerHeight-50);
+  noBtn.style.position="fixed";
+  noBtn.style.transition="all 0.4s ease";
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+});
+
+function sayYes(){
+  yesClick.play();
+  launchConfetti();
+  setTimeout(()=>{
+    successSound.play();
+    document.body.innerHTML=`
+      <div style="
       height:100vh;
       display:flex;
       justify-content:center;
       align-items:center;
       background:#fff0f5;
-      font-family:'Great Vibes',cursive;
+      font-family:'Playfair Display',serif;
       font-size:50px;
-      color:#ff1493;
-      flex-direction:column;
-    ">
-      She said YES ❤️
-    </div>
-  `;
-
-  for (let i = 0; i < 100; i++) {
-    let confetti = document.createElement("div");
-    confetti.style.position = "fixed";
-    confetti.style.width = "8px";
-    confetti.style.height = "8px";
-    confetti.style.background = "#ff69b4";
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.top = "-10px";
-    confetti.style.opacity = 0.7;
-    confetti.style.transform = "rotate(45deg)";
-    confetti.style.transition = "top 3s linear";
-    document.body.appendChild(confetti);
-
-    setTimeout(() => {
-      confetti.style.top = window.innerHeight + "px";
-    }, 10);
-  }
+      color:#ff1493;">
+      She said YES
+      </div>`;
+  },1500);
 }
 
+/* Animated Confetti */
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let confettiPieces=[];
+
+function launchConfetti(){
+  for(let i=0;i<150;i++){
+    confettiPieces.push({
+      x:Math.random()*canvas.width,
+      y:-10,
+      size:5+Math.random()*5,
+      speed:2+Math.random()*3,
+      color:["#ff69b4","#ff1493","#ffb6c1"][Math.floor(Math.random()*3)]
+    });
+  }
+  animateConfetti();
+}
+
+function animateConfetti(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confettiPieces.forEach(p=>{
+    p.y+=p.speed;
+    ctx.fillStyle=p.color;
+    ctx.fillRect(p.x,p.y,p.size,p.size);
+  });
+  requestAnimationFrame(animateConfetti);
+}
+
+/* Floating background particles */
+for(let i=0;i<20;i++){
+  let p=document.createElement("div");
+  p.classList.add("particle");
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(8+Math.random()*5)+"s";
+  document.body.appendChild(p);
+}
 </script>
 
 </body>
