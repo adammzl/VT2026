@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Cinematic</title>
+<title>VT2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -147,7 +147,7 @@ startBtn.onclick=()=>{
   startBtn.style.display="none";
   video.style.display="block";
   video.play();
-  bgMusic.volume=0.4; bgMusic.play();
+  bgMusic.volume=0.25; bgMusic.play();
 };
 
 /* VIDEO END */
@@ -261,7 +261,7 @@ function sayYes(){
 
     // Sparkling YEAYYYYY
     const h1=document.createElement("h1"); h1.id="finalText";
-    const word="YEAYYYYY";
+    const word="YEAYYYYY (iloveyou)";
     for(let i=0;i<word.length;i++){
       const span=document.createElement("span"); span.classList.add("final-letter"); span.innerText=word[i];
       for(let j=0;j<6;j++){
